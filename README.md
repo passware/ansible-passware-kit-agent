@@ -1,8 +1,11 @@
 Ansible Role: Passware Kit Agent for Linux
 ==========================================
 
+[![Build Status](https://travis-ci.org/passware/ansible-passware-kit-agent.svg?branch=master)](https://travis-ci.org/passware/ansible-passware-kit-agent)
+
 An Ansible role that installs, configures and runs Passware Kit Agent on
 CentOS 7.x or Ubuntu 14.04 LTS
+
 
 Requirements
 ------------
