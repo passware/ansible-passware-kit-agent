@@ -20,6 +20,5 @@ galaxy_info:
   galaxy_tags:
     - passware
     - agent
-    - passware-kit-agent
     - installer
 dependencies: []
