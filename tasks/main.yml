@@ -1,0 +1,57 @@
+---
+# Deploy Passware Kit Linux Agent on server
+#
+
+- include: user.yml
+
+- name: Create logs directory
+  file: path={{ pk_agent_logs_dir_name }} state=directory mode=0755 owner={{ pk_agent_user_name }} group={{ pk_agent_user_group }}
+
+- name: Create work directory
+  file: path={{ pk_agent_work_dir_name }} state=directory mode=0755 owner={{ pk_agent_user_name }} group={{ pk_agent_user_group }}
+
+- include: download.yml
+  vars:
+    pk_agent_download_tgz_url: "{{ pk_agent_download_url }}/{{ pk_agent_x86_64_tgz_name }}"
+    pk_agent_distribution_file: "{{ pk_agent_home_dir_name }}/{{ pk_agent_x86_64_tgz_name }}"
+    pk_agent_unpacked_dir_name: "{{ pk_agent_home_dir_name }}/{{ pk_agent_x86_64_dir_name }}"
+  when: ansible_machine == "x86_64"
+
+- include: download.yml
+  vars:
+    pk_agent_download_tgz_url: "{{ pk_agent_download_url }}/{{ pk_agent_i686_tgz_name }}"
+    pk_agent_distribution_file: "{{ pk_agent_home_dir_name }}/{{ pk_agent_i686_tgz_name }}"
+    pk_agent_unpacked_dir_name: "{{ pk_agent_home_dir_name }}/{{ pk_agent_i686_dir_name }}"
+  when: ansible_machine == "i686"
+
+- name: Update settings directory in agent.conf
+  ini_file:
+      dest={{ pk_agent_conf_name }}
+      section=General
+      option=AgentSettingsFolder
+      value={{ pk_agent_work_dir_name }}
+
+- name: Update logs directory in agent.conf
+  ini_file:
+      dest={{ pk_agent_conf_name }}
+      section=General
+      option=LogsFolder
+      value={{ pk_agent_logs_dir_name }}
+
+- include: centos.yml
+  when: ansible_os_family == "RedHat"
+
+- include: debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Enable Passware Kit Linux Agent service
+  service: name={{ pk_agent_service_name }} enabled=yes state=running
+
+- name: Get Passware Kit Linux Agent status
+  shell: service {{ pk_agent_service_name }} status
+  register: service_status
+  ignore_errors: yes
+
+- name: Check Passware Kit Linux Agent status
+  fail: msg="Failed to start Passware Kit Agent"
+  when: service_status.rc != 0

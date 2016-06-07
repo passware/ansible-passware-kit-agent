@@ -1,0 +1,4 @@
+---
+
+- name: restart passware kit agent
+  service: name={{ pk_agent_service_name }} state=restarted

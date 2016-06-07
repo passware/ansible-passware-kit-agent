@@ -1,0 +1,14 @@
+---
+# RedHat/CentOS specific installation
+#
+
+- name: Update work dir in init script
+  lineinfile:
+    dest={{ pk_agent_init_centos }}
+    regexp="^WORKDIR"
+    line="WORKDIR={{ pk_agent_work_dir_name }}"
+
+- name: Install init.d script
+  command: cp {{ pk_agent_init_centos }} {{ pk_agent_init_script }}
+  notify:
+    - restart passware kit agent

@@ -1,0 +1,19 @@
+---
+# Download Passware Kit Agent for Linux
+#
+
+- name: Download distribution
+  get_url: url={{ pk_agent_download_tgz_url }} dest={{ pk_agent_home_dir_name }}/
+
+
+- name: Untar distribution
+  unarchive: src={{ pk_agent_distribution_file }} dest={{ pk_agent_home_dir_name }}/ owner={{ pk_agent_user_name }} group={{ pk_agent_user_group }} copy=no
+
+- name: Remove downloaded archive
+  file: path={{ pk_agent_distribution_file }} state=absent
+
+- name: Move unpacked files
+  shell: mv {{ pk_agent_unpacked_dir_name }}/* {{ pk_agent_work_dir_name }}/
+
+- name: Remove empty dir
+  file: path={{ pk_agent_unpacked_dir_name }} state=absent

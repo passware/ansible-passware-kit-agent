@@ -1,0 +1,25 @@
+---
+
+galaxy_info:
+  author: Yuri Egorov
+  description: Passware Kit Agent for Linux installer
+  company: Passware. Inc
+  license: MIT
+  min_ansible_version: 2.0
+  github_branch: master
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - trusty
+    - name: Debian
+      versions:
+        - jessie
+  galaxy_tags:
+    - passware
+    - agent
+    - passware-kit-agent
+    - installer
+dependencies: []

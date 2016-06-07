@@ -1,0 +1,17 @@
+---
+
+pk_agent_user_name: "passware"
+pk_agent_user_group: "passware"
+pk_agent_home_dir_name: "/home/passware"
+pk_agent_i686_dir_name: "passware-kit-agent-32bit"
+pk_agent_x86_64_dir_name: "passware-kit-agent-64bit"
+pk_agent_download_url: "http://www.lostpassword.com/downloads"
+pk_agent_i686_tgz_name: "passware-kit-agent-32bit.tar.gz"
+pk_agent_x86_64_tgz_name: "passware-kit-agent-64bit.tar.gz"
+pk_agent_logs_dir_name: "{{ pk_agent_home_dir_name }}/logs"
+pk_agent_work_dir_name: "{{ pk_agent_home_dir_name }}/passware-kit-agent"
+pk_agent_conf_name: "{{ pk_agent_work_dir_name }}/agent.conf"
+pk_agent_init_centos: "{{ pk_agent_work_dir_name }}/init-centos.sh"
+pk_agent_init_debian: "{{ pk_agent_work_dir_name }}/init-debian.sh"
+pk_agent_service_name: "passware-kit-agent"
+pk_agent_init_script: "/etc/init.d/{{ pk_agent_service_name }}"

@@ -1,0 +1,12 @@
+---
+# Create group/user to run Passware Kit Agent
+#
+
+- name: Add passware group
+  group: name={{ pk_agent_user_group }} state=present
+
+- name: Add passware user
+  user: name={{ pk_agent_user_name }}
+        group={{ pk_agent_user_group }}
+        home={{ pk_agent_home_dir_name }}
+        state=present
