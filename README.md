@@ -47,7 +47,7 @@ In order to deploy you need to perform the following steps:
 
 * Create a new `hosts` (a-ka `inventory`) file.
   Check [ansible inventory documentation](http://docs.ansible.com/intro_inventory.html)
-  if you need help. This file will identify all the hosts where to deploy to.
+  if you need help. This file identifies all the hosts where to deploy to.
 * Create a new playbook for deploying, for example, `deploy.yml`
 * Customize role variables (see [Role Variables](#role-variables))
 * Include the `passware.passware-kit-agent` role as part of a play
