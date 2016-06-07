@@ -40,10 +40,10 @@ Available variables are listed below, along with default values:
     pk_agent_service_name: passware-kit-agent
 ```
 
-Deploying
----------
+Deployment
+----------
 
-In order to deploy you need to perform some steps:
+In order to deploy you need to perform the following steps:
 
 * Create a new `hosts` (a-ka `inventory`) file.
   Check [ansible inventory documentation](http://docs.ansible.com/intro_inventory.html)
